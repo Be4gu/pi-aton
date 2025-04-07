@@ -10,8 +10,6 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 export default function Navbar() {
   const { data: session, status } = useSession()
   const isLoading = status === 'loading'
-  console.log('TWITCH_CLIENT_ID:', process.env.TWITCH_CLIENT_ID);
-  console.log('TWITCH_CLIENT_SECRET:', process.env.TWITCH_CLIENT_SECRET);
 
   return (
     <header className='sticky top-0 z-50 w-full flex justify-center border-b border-[#3A3A3A] bg-[#121212]/95 backdrop-blur-md'>

@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button'
 export function LoginButton() {
   const { data: session, status } = useSession()
   const isLoading = status === 'loading'
-  console.log('TWITCH_CLIENT_ID:', process.env.TWITCH_CLIENT_ID)
-  console.log('TWITCH_CLIENT_SECRET:', process.env.TWITCH_CLIENT_SECRET)
   if (isLoading) {
     return (
       <Button variant='outline' disabled>

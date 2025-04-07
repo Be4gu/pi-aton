@@ -97,7 +97,9 @@ export default function Store() {
 
                   <div className='mb-4'>
                     <div className='flex items-center gap-2 mb-2'>
-                      <span className='text-[#FFFFFF]'>{typeof profile.reliability === 'number' ? `${(profile.reliability * 100).toFixed(0)}%` : profile.reliability}</span>
+                      <span className='text-[#FFFFFF]'>
+                        {isNaN(parseFloat(profile.reliability)) ? profile.reliability : `${(parseFloat(profile.reliability) * 100).toFixed(0)}%`}
+                      </span>
                       <span className='text-[#E0E0E0]'>Fiabilidad</span>
                     </div>
                     <div className='flex items-center gap-2'>

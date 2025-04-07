@@ -1,8 +1,13 @@
 import { NextResponse } from 'next/server'
 import { getProfileById, updateProfile, deleteProfile } from '@/lib/models/profiles'
+import { apiAuthMiddleware } from '@/lib/apiAuth'
 
 // GET para obtener un perfil específico
 export async function GET(request, context) {
+  // Verificar autenticación
+  const authError = apiAuthMiddleware(request)
+  if (authError) return authError
+
   try {
     const { params } = await context
     const id = params.id
@@ -24,6 +29,10 @@ export async function GET(request, context) {
 
 // PUT para actualizar un perfil existente
 export async function PUT(request, { params }) {
+  // Verificar autenticación
+  const authError = apiAuthMiddleware(request)
+  if (authError) return authError
+
   try {
     const id = params.id
     const data = await request.json()
@@ -45,6 +54,10 @@ export async function PUT(request, { params }) {
 
 // DELETE para eliminar un perfil
 export async function DELETE(request, { params }) {
+  // Verificar autenticación
+  const authError = apiAuthMiddleware(request)
+  if (authError) return authError
+
   try {
     const id = params.id
 

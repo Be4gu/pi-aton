@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getAllProfiles, createProfile, initProfilesTable } from '@/lib/models/profiles'
 import { testConnection } from '@/lib/db'
+import { apiAuthMiddleware } from '@/lib/apiAuth'
 
 // Inicializar la tabla cuando se carga el API
 let initialized = false
@@ -14,7 +15,11 @@ async function initialize() {
 }
 
 // GET para obtener todos los perfiles
-export async function GET() {
+export async function GET(request) {
+  // Verificar autenticación
+  const authError = apiAuthMiddleware(request)
+  if (authError) return authError
+
   try {
     await initialize()
     const profiles = await getAllProfiles()
@@ -27,6 +32,10 @@ export async function GET() {
 
 // POST para crear un nuevo perfil
 export async function POST(request) {
+  // Verificar autenticación
+  const authError = apiAuthMiddleware(request)
+  if (authError) return authError
+
   try {
     await initialize()
     const data = await request.json()

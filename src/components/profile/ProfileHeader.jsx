@@ -1,4 +1,4 @@
-import { Star, Heart } from 'lucide-react'
+import { Star, Heart, Shield, Package, DollarSign } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useMemo } from 'react'
 
@@ -55,16 +55,40 @@ export function ProfileHeader({ profile, onContactClick }) {
             ))}
             <span className='ml-2 text-sm text-gray-400'>({profileData.reviews} reseñas)</span>
           </div>
-          <div className='text-sm text-gray-400'>
-            <div>Fiabilidad: {profileData.reliabilityPercent}%</div>
-            <div>Encargos Completados: {profileData.completedOrders}</div>
-          </div>
         </div>
-        <div className='text-right'>
+        <div className='text-right md:block hidden'>
           <div className='text-2xl font-bold text-[#33CCFF]'>{profile.price}</div>
           <div className='text-sm text-gray-400'>por servicio</div>
         </div>
       </div>
+
+      {/* Sección destacada de fiabilidad, encargos completados y precio */}
+      <div className='flex flex-wrap gap-4 p-4 bg-[#1a1a1a] rounded-lg border border-[#333] mb-6'>
+        <div className='flex-1 min-w-[120px] flex items-center gap-2'>
+          <Shield className='w-5 h-5 text-[#33CCFF] flex-shrink-0' />
+          <div>
+            <div className='text-lg font-bold text-white'>{profileData.reliabilityPercent}%</div>
+            <div className='text-sm text-gray-300'>Fiabilidad</div>
+          </div>
+        </div>
+        
+        <div className='flex-1 min-w-[120px] flex items-center gap-2'>
+          <Package className='w-5 h-5 text-[#33CCFF] flex-shrink-0' />
+          <div>
+            <div className='text-lg font-bold text-white'>{profileData.completedOrders}</div>
+            <div className='text-sm text-gray-300'>Encargos Completados</div>
+          </div>
+        </div>
+        
+        <div className='flex-1 min-w-[120px] flex items-center gap-2 md:hidden'>
+          <DollarSign className='w-5 h-5 text-[#33CCFF] flex-shrink-0' />
+          <div>
+            <div className='text-lg font-bold text-white'>{profile.price}</div>
+            <div className='text-sm text-gray-300'>por servicio</div>
+          </div>
+        </div>
+      </div>
+
       <p className='text-gray-300 mb-6'>{profile.description}</p>
       <div className='flex gap-2 mb-6'>
         <Button

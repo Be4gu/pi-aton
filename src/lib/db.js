@@ -2,8 +2,7 @@ import { Pool } from 'pg'
 
 // Configuración de la conexión a PostgreSQL usando variables de entorno
 const pool = new Pool({
-  connectionString:
-    process.env.DATABASE_URL || 'postgresql://pi%C3%B1atondb_owner:npg_6fnt4UcHxWPA@ep-damp-sound-abdhdpdt-pooler.eu-west-2.aws.neon.tech/pi%C3%B1atondb?sslmode=require',
+  connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }

@@ -20,6 +20,7 @@ export default function ProfilePage() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [reviewTextModalOpen, setReviewTextModalOpen] = useState(false)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -29,11 +30,9 @@ export default function ProfilePage() {
   const [reviewsLoading, setReviewsLoading] = useState(false)
   const [reviewsError, setReviewsError] = useState(null)
 
-  // Memoizar la URL para evitar recreaciones innecesarias
   const profileApiUrl = useMemo(() => `/api/profiles/${id}`, [id])
   const reviewsApiUrl = useMemo(() => `/api/reviews?profileId=${id}`, [id])
 
-  // Factorizar la función fetchProfile usando useCallback para evitar recreaciones
   const fetchProfile = useCallback(async () => {
     try {
       setLoading(true)
@@ -53,7 +52,6 @@ export default function ProfilePage() {
     }
   }, [profileApiUrl])
 
-  // Factorizar la función fetchReviews usando useCallback
   const fetchReviews = useCallback(async () => {
     if (!id) return
 
@@ -94,22 +92,19 @@ export default function ProfilePage() {
     }
   }, [profile, fetchReviews])
 
-  // Memoizar funciones de manejo de eventos para evitar recreaciones
   const handleCreateReview = useCallback(() => {
-    if (session) {
-      setIsReviewModalOpen(true)
-    } else {
-      setIsLoginModalOpen(true)
-    }
-  }, [session])
+    // Siempre mostramos el modal de reseña con las opciones primero
+    setIsReviewModalOpen(true)
+  }, [])
 
   const handleSubmitReview = useCallback(async () => {
-    if (!session || !reviewText.trim()) return
+    // Ahora permitimos reseñas anónimas o con sesión
+    if (!reviewText.trim()) return
 
     try {
       const reviewData = {
         profileId: id,
-        author: session.user.name,
+        author: session?.user?.name || 'Anónimo',
         content: reviewText,
         rating: rating
       }
@@ -138,7 +133,11 @@ export default function ProfilePage() {
             }))
           }
 
+          // Cerrar todos los modales
+          setReviewTextModalOpen(false)
           setIsReviewModalOpen(false)
+
+          // Reiniciar valores
           setRating(5)
           setReviewText('')
 
@@ -158,7 +157,31 @@ export default function ProfilePage() {
   }, [session, reviewText, rating, id])
 
   const handleLoginRedirect = useCallback(() => {
-    signIn('twitch', { callbackUrl: window.location.href })
+    setIsReviewModalOpen(false)
+
+    // Si ya tiene sesión iniciada, mostrar directamente el formulario de reseña
+    if (session?.user) {
+      setReviewTextModalOpen(true)
+    } else {
+      // Si no tiene sesión, guardar estado y redirigir a login
+      localStorage.setItem('wantsToReview', 'true')
+      signIn('twitch', { callbackUrl: window.location.href })
+    }
+  }, [session])
+
+  // Verificar si el usuario regresa después de autenticarse y quería dejar una reseña
+  useEffect(() => {
+    if (session?.user && localStorage.getItem('wantsToReview') === 'true') {
+      // Limpiar el flag
+      localStorage.removeItem('wantsToReview')
+      // Mostrar el modal de reseña de texto directamente
+      setReviewTextModalOpen(true)
+    }
+  }, [session])
+
+  const handleAnonymousContinue = useCallback(() => {
+    // Mostrar el formulario para añadir reseña como anónimo
+    setReviewTextModalOpen(true)
   }, [])
 
   const handleImageClick = useCallback((image) => {
@@ -169,22 +192,20 @@ export default function ProfilePage() {
     router.back()
   }, [router])
 
-  // Usar el campo `rating` directamente del perfil para renderizar las estrellas
   const starsArray = useMemo(() => {
-    const avgRating = profile?.rating || 0 // Usar el rating del perfil
+    const avgRating = profile?.rating || 0
 
     return Array.from({ length: 5 }).map((_, i) => {
       if (i < Math.floor(avgRating)) {
-        return { key: i, filled: true, partial: false } // Estrella completa
+        return { key: i, filled: true, partial: false }
       } else if (i === Math.floor(avgRating) && avgRating % 1 !== 0) {
-        return { key: i, filled: true, partial: true } // Estrella parcial
+        return { key: i, filled: true, partial: true }
       } else {
-        return { key: i, filled: false, partial: false } // Estrella vacía
+        return { key: i, filled: false, partial: false }
       }
     })
   }, [profile?.rating])
 
-  // Componentes cargando y error
   if (loading) {
     return (
       <>
@@ -221,10 +242,8 @@ export default function ProfilePage() {
           <ArrowLeft className='mr-2 h-4 w-4' /> Volver
         </Button>
         <div className='grid md:grid-cols-2 gap-8'>
-          {/* Columna izquierda - Galería de imágenes */}
           <ProfileGallery profile={profile} onImageClick={handleImageClick} />
 
-          {/* Columna derecha - Información del perfil */}
           <div>
             <ProfileHeader profile={profile} onContactClick={() => setIsVideoModalOpen(true)} />
 
@@ -248,7 +267,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Modales */}
         {selectedImage && (
           <ImagePreview
             isOpen={!!selectedImage}
@@ -261,13 +279,41 @@ export default function ProfilePage() {
 
         {isVideoModalOpen && <ContactModal isOpen={isVideoModalOpen} onClose={() => setIsVideoModalOpen(false)} />}
 
-        {/* Modal para crear reseñas (solo para usuarios con sesión) */}
         {isReviewModalOpen && (
           <div className='fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50' onClick={() => setIsReviewModalOpen(false)}>
             <div className='bg-[#1E1E1E] p-6 rounded-lg max-w-lg w-full border border-[#33CCFF]/30' onClick={(e) => e.stopPropagation()}>
               <div className='flex justify-between items-center mb-4'>
-                <h3 className='text-xl font-semibold text-[#33CCFF]'>Crear Reseña como {session?.user?.name}</h3>
+                <h3 className='text-xl font-semibold text-[#33CCFF]'>Crear Reseña</h3>
                 <Button variant='ghost' size='icon' onClick={() => setIsReviewModalOpen(false)} className='text-white hover:bg-white/10 h-8 w-8'>
+                  <X className='h-5 w-5' />
+                </Button>
+              </div>
+
+              <div className='mb-4'>
+                <p className='text-white mb-2'>Tu reseña aparecerá como:</p>
+                <p className='text-gray-300 mb-4'>{session?.user?.name || 'Anónimo'}</p>
+              </div>
+
+              <div className='flex justify-end gap-2'>
+                {!session?.user && (
+                  <Button variant='outline' onClick={handleAnonymousContinue} className='border border-[#33CCFF] text-[#33CCFF] hover:bg-[#33CCFF]/10'>
+                    Anónimo
+                  </Button>
+                )}
+                <Button className='bg-[#33CCFF] text-black font-medium hover:bg-[#33CCFF]/80' onClick={handleLoginRedirect}>
+                  {session?.user ? 'Continuar' : 'Con Twitch'}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {reviewTextModalOpen && (
+          <div className='fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50' onClick={() => setReviewTextModalOpen(false)}>
+            <div className='bg-[#1E1E1E] p-6 rounded-lg max-w-lg w-full border border-[#33CCFF]/30' onClick={(e) => e.stopPropagation()}>
+              <div className='flex justify-between items-center mb-4'>
+                <h3 className='text-xl font-semibold text-[#33CCFF]'>Añadir Reseña</h3>
+                <Button variant='ghost' size='icon' onClick={() => setReviewTextModalOpen(false)} className='text-white hover:bg-white/10 h-8 w-8'>
                   <X className='h-5 w-5' />
                 </Button>
               </div>
@@ -281,21 +327,18 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <div className='mb-6'>
-                <p className='text-white mb-2'>Comentario:</p>
+              <div className='mb-4'>
                 <textarea
-                  className='w-full bg-[#2A2A2A] text-white border border-[#3A3A3A] rounded p-2 focus:outline-none focus:border-[#33CCFF] min-h-[100px]'
-                  placeholder='Comparte tu opinión sobre este profesional...'
+                  className='w-full p-2 rounded-lg bg-[#2A2A2A] text-white border border-[#33CCFF]/30 focus:outline-none focus:ring-2 focus:ring-[#33CCFF]'
+                  rows={4}
+                  placeholder='Escribe tu reseña aquí...'
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
                 />
               </div>
 
-              <div className='flex justify-end gap-2'>
-                <Button variant='ghost' onClick={() => setIsReviewModalOpen(false)} className='text-white hover:bg-white/10'>
-                  Cancelar
-                </Button>
-                <Button className='bg-[#33CCFF] text-black font-medium hover:bg-[#33CCFF]/80' onClick={handleSubmitReview} disabled={!reviewText.trim()}>
+              <div className='flex justify-end'>
+                <Button className='bg-[#33CCFF] text-black font-medium hover:bg-[#33CCFF]/80' onClick={handleSubmitReview}>
                   Enviar Reseña
                 </Button>
               </div>
@@ -303,7 +346,6 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Modal para usuarios sin sesión */}
         {isLoginModalOpen && (
           <div className='fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50' onClick={() => setIsLoginModalOpen(false)}>
             <div className='bg-[#1E1E1E] p-6 rounded-lg max-w-md w-full border border-[#3A3A3A]' onClick={(e) => e.stopPropagation()}>
@@ -313,17 +355,9 @@ export default function ProfilePage() {
                   <X className='h-5 w-5' />
                 </Button>
               </div>
-
-              <p className='text-gray-300 mb-2'>Para añadir una reseña, necesitas iniciar sesión con tu cuenta de Twitch.</p>
-              <p className='text-gray-300 mb-6'>
-                Esto se hace para evitar faltas de respeto innecesarias. En caso de que las hubiera, el streamer podrá tomar las medidas necesarias.
-              </p>
-
-              <div className='flex justify-end gap-2'>
-                <Button variant='ghost' onClick={() => setIsLoginModalOpen(false)} className='text-white hover:bg-white/10'>
-                  Cancelar
-                </Button>
-                <Button className='gradient-btn border-0 text-white font-medium bg-[#33CCFF] hover:bg-[#33CCFF]/80' onClick={handleLoginRedirect}>
+              <p className='text-gray-300 mb-4'>Para dejar una reseña, necesitas iniciar sesión con tu cuenta de Twitch.</p>
+              <div className='flex justify-end'>
+                <Button onClick={() => signIn('twitch')} className='bg-[#33CCFF] text-black font-medium hover:bg-[#33CCFF]/80'>
                   Iniciar sesión con Twitch
                 </Button>
               </div>

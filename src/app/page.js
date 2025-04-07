@@ -1,101 +1,120 @@
-import Image from "next/image";
+// import Image from 'next/image'
+
+import { Button } from '@/components/ui/button'
+import Navbar from '@/components/navbar'
+// import Footer from '@/components/footer'
+import Link from 'next/link'
+import { LoginButton } from '@/components/auth/LoginButton'
+import { ArrowRight, Shield, Clock, CreditCard, Headphones } from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className='min-h-screen '>
+      <Navbar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className='container mx-auto px-4 py-16'>
+        <section className='text-center max-w-5xl mx-auto mb-20'>
+          <h1 className='text-4xl sm:text-5xl md:text-7xl sm:text- font-bold text-primary-blue mb-8 tracking-tight'>¡EN PIÑATON.COM!</h1>
+
+          <div className='bg-dark-gray rounded-xl p-8 mb-10 text-white text-center border border-light-gray shadow-lg"'>
+            <p className='text-lg hidden lg:block  leading-relaxed'>
+              ¿No puedes ni matar un 🐣 en Rust? ¿Ese roofcamper hijo de la gran pu@#$% te tiene hasta los 🥚🥚? ¡Relájate! Nosotros tenemos a los mejores actores listos para
+              conseguir ese loot que tanto necesitas. Por un precio que no te hará llorar (demasiado), nuestros profesionales te ayudarán a conseguier lo que necesitas (sin
+              levantar sospechas de que has pagado), para wipear bases como si fueras el 👑 del server .
+            </p>
+            <p className='text-sm sm:text-base md:text-lg lg:hidden leading-relaxed'>
+              ¿No puedes ni matar un 🐣 en Rust? ¿Ese roofcamper hijo de la gran pu@#$% te tiene hasta los 🥚🥚? ¡Relájate! Nosotros tenemos a los mejores actores listos para
+              conseguir ese loot que tanto necesitas.
+            </p>
+          </div>
+          <Link href='/tienda'>
+            <Button className='gradient-btn text-white text-lg px-8 py-6 rounded-xl font-medium inline-flex items-center gap-2'>
+              Explorar Servicios
+              <ArrowRight className='w-5 h-5' />
+            </Button>
+          </Link>
+        </section>
+
+        <div className='section-divider' />
+
+        <section className='grid md:grid-cols-2 gap-10 mb-24'>
+          <div className='bg-dark-gray p-10 rounded-xl border border-light-gray card-hover'>
+            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-primary-blue mb-6'>Nuestros Servicios</h2>
+            <ul className='space-y-4 text-primary-white'>
+              <li className='flex items-center gap-3 text-sm md:text-base lg:text-lg'>
+                <span className='text-primary-blue'>✦</span> Raids y Counter-Raids profesionales
+              </li>
+              <li className='flex items-center gap-3 text-sm md:text-base  lg:text-lg'>
+                <span className='text-primary-blue'>✦</span> Entrenamiento PvP personalizado
+              </li>
+              <li className='flex items-center gap-3 text-sm md:text-base lg:text-lg'>
+                <span className='text-primary-blue'>✦</span> Diseño de bases seguras
+              </li>
+              <li className='flex items-center gap-3 text-sm md:text-base lg:text-lg'>
+                <span className='text-primary-blue'>✦</span> Farming y recolección de recursos
+              </li>
+              <li className='flex items-center gap-3 text-sm md:text-base lg:text-lg'>
+                <span className='text-primary-blue'>✦</span> Escoltas y protección VIP
+              </li>
+            </ul>
+          </div>
+
+          <div className='bg-dark-gray p-10 rounded-xl border border-light-gray card-hover'>
+            <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-primary-blue mb-6'>Por Qué Elegirnos</h2>
+            <ul className='space-y-4 text-primary-white'>
+              <li className='flex items-center gap-4 text-sm md:text-base lg:text-lg'>
+                <Shield className='w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primary-blue' />
+                Más de 5000 horas de experiencia
+              </li>
+              <li className='flex items-center gap-4 text-sm md:text-base lg:text-lg'>
+                <Clock className='w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primary-blue' />
+                Servicio 24/7
+              </li>
+              <li className='flex items-center gap-4 text-sm md:text-base lg:text-lg'>
+                <CreditCard className='w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primary-blue' />
+                Métodos de pago seguros
+              </li>
+              <li className='flex items-center gap-4 text-sm md:text-base lg:text-lg'>
+                <Headphones className='w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-primary-blue' />
+                Soporte premium por Discord
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div className='section-divider' />
+
+        <section className='text-center max-w-5xl mx-auto mb-24'>
+          <h2 className='text-3xl font-bold text-primary-blue mb-10'>Futuros eventos</h2>
+          <div className='grid md:grid-cols-3 gap-8'>
+            {[
+              {
+                title: 'Agarramiento de banana',
+                description: 'Premio: 500€ en servicios',
+                date: '15 Abril 2024'
+              },
+              {
+                title: 'Bedwars inverso',
+                description: 'El que primero pone una cama pierde',
+                date: '22 Junio 2024'
+              },
+              {
+                title: 'Bellum',
+                description: 'El que no llora porque juegan PROS, GANA🎉',
+                date: '25 Junio 2024'
+              }
+            ].map((event, index) => (
+              <div key={index} className='bg-dark-gray p-8 rounded-xl border border-light-gray card-hover'>
+                <h3 className='text-xl font-bold text-white mb-3'>{event.title}</h3>
+                <p className='text-primary-white mb-4'>{event.description}</p>
+                <p className='text-primary-blue font-medium'>{event.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      {/* <Footer /> */}
     </div>
-  );
+  )
 }

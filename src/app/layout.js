@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        <script async defer data-website-id='tu-website-id' src='https://tu-instancia-umami.com/script.js'></script>
+        <script defer src='https://cloud.umami.is/script.js' data-website-id='75c46d0f-f565-48a7-b2c2-9b7a526fb9b8'></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>{children}</Providers>

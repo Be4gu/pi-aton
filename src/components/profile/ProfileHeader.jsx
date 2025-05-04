@@ -1,8 +1,8 @@
-import { Star, Heart, Shield, Package, DollarSign } from 'lucide-react'
+import { Star, Heart, Shield, Package, DollarSign, Volume2, VolumeX } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useMemo } from 'react'
 
-export function ProfileHeader({ profile, onContactClick }) {
+export function ProfileHeader({ profile, onContactClick, showMusicControl, isMuted, onToggleMute }) {
   // Memoizar todos los cálculos de valores para evitar recálculos innecesarios
   const profileData = useMemo(() => {
     // Asegurar valores seguros para evitar errores de hidratación
@@ -43,10 +43,21 @@ export function ProfileHeader({ profile, onContactClick }) {
       starsArray
     }
   }, [profile.rating, profile.reviews, profile.reliability, profile.completedOrders, profile.completed_orders])
-
   return (
     <div>
-      <h1 className='text-3xl font-bold mb-4 text-primary-blue'>{profile.name}</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className='text-3xl font-bold text-primary-blue'>{profile.name}</h1>
+        {showMusicControl && (
+          <Button 
+            onClick={onToggleMute} 
+            size="sm" 
+            className="ml-2 bg-[#33CCFF] hover:bg-[#00B8D9] text-white"
+            title={isMuted ? "Activar música" : "Silenciar música"}
+          >
+            {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+          </Button>
+        )}
+      </div>
       <div className='flex justify-between items-start mb-4'>
         <div>
           <div className='flex items-center mb-2'>

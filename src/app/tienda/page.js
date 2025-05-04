@@ -65,7 +65,6 @@ export default function Store() {
       </div>
     )
   }
-
   return (
     <div className='min-h-screen'>
       <Navbar />
@@ -78,47 +77,114 @@ export default function Store() {
             <p className='text-xl text-[#E0E0E0]'>No se encontraron perfiles disponibles</p>
           </div>
         ) : (
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {profiles.map((profile) => (
-              <Card key={profile.id} className='bg-[#1E1E1E] border-[#3A3A3A] hover:border-[#00B8D9] transition-colors h-[400px] flex flex-col'>
-                <CardContent className='pt-6 flex-grow overflow-hidden'>
-                  <div className='flex justify-between items-start mb-4'>
-                    <div>
-                      <h2 className='text-xl font-bold text-[#00B8D9]'>{profile.name}</h2>
-                      <div className='flex items-center gap-1 mt-1'>
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-4 h-4 ${i < profile.rating ? 'fill-[#33CCFF] text-[#33CCFF]' : 'text-[#3A3A3A]'}`} />
-                        ))}
-                        <span className='text-sm text-[#E0E0E0]'>({profile.reviews} reseñas)</span>
-                      </div>
-                    </div>
-                    <span className='text-2xl font-bold text-[#00B8D9]'>{profile.price}</span>
-                  </div>
+          <>
+            {/* Sección de Profesionales Premium */}
+            <div className='mb-10'>
+              <h2 className='text-2xl font-bold text-center text-[#FFDF00] mb-6'>Servicios Premium</h2>
+              <div className='grid md:grid-cols-2 gap-6'>
+                {profiles
+                  .filter((profile) => profile.id === 9 || profile.id === 10)
+                  .map((profile) => (
+                    <Card key={profile.id} className='bg-[#1E1E1E] border-2 border-[#FFDF00] shadow-lg hover:shadow-[#FFDF00]/20 transition-colors h-[400px] flex flex-col'>
+                      <div className='absolute top-0 right-0 bg-[#FFDF00] text-[#1E1E1E] px-3 py-1 rounded-bl-lg font-bold'>PREMIUM</div>
+                      <CardContent className='pt-6 flex-grow overflow-hidden'>
+                        <div className='flex justify-between items-start mb-4'>
+                          <div>
+                            <h2 className='text-xl font-bold text-[#FFDF00]'>{profile.name}</h2>
+                            <div className='flex items-center gap-1 mt-1'>
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className={`w-4 h-4 ${i < profile.rating ? 'fill-[#FFDF00] text-[#FFDF00]' : 'text-[#3A3A3A]'}`} />
+                              ))}
+                              <span className='text-sm text-[#E0E0E0]'>({profile.reviews} reseñas)</span>
+                            </div>
+                          </div>
+                          <span className='text-2xl font-bold text-[#FFDF00]'>{profile.price}</span>
+                        </div>
 
-                  <div className='mb-4'>
-                    <div className='flex items-center gap-2 mb-2'>
-                      <span className='text-[#FFFFFF]'>
-                        {isNaN(parseFloat(profile.reliability)) ? profile.reliability : `${(parseFloat(profile.reliability) * 100).toFixed(0)}%`}
-                      </span>
-                      <span className='text-[#E0E0E0]'>Fiabilidad</span>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                      <span className='text-[#FFFFFF]'>{profile.completed_orders || profile.completedOrders}</span>
-                      <span className='text-[#E0E0E0]'>Encargos Completados</span>
-                    </div>
-                  </div>
+                        <div className='mb-4'>
+                          <div className='flex items-center gap-2 mb-2'>
+                            <span className='text-[#FFFFFF]'>
+                              {isNaN(parseFloat(profile.reliability)) ? profile.reliability : `${(parseFloat(profile.reliability) * 100).toFixed(0)}%`}
+                            </span>
+                            <span className='text-[#E0E0E0]'>Fiabilidad</span>
+                          </div>
+                          <div className='flex items-center gap-2'>
+                            <span className='text-[#FFFFFF]'>{profile.completed_orders || profile.completedOrders}</span>
+                            <span className='text-[#E0E0E0]'>Encargos Completados</span>
+                          </div>
+                        </div>
 
-                  <div className='text-[#E0E0E0] overflow-hidden max-h-[150px]'>{profile.description}</div>
-                </CardContent>
+                        <div
+                          className={
+                            `text-[#E0E0E0] whitespace-pre-line ` +
+                            (profile.id === 9 || profile.id === 10
+                              ? ''
+                              : 'overflow-hidden max-h-[150px] [display:-webkit-box] [WebkitLineClamp:8] [WebkitBoxOrient:vertical] text-ellipsis')
+                          }
+                          style={profile.id === 9 || profile.id === 10 ? {} : { overflow: 'hidden', textOverflow: 'ellipsis' }}
+                        >
+                          {profile.description}
+                        </div>
+                      </CardContent>
 
-                <CardFooter className='flex gap-2 mt-auto'>
-                  <Link href={`/profiles/${profile.id}`} className='w-full'>
-                    <Button className='w-full bg-[#00B8D9] hover:bg-[#33CCFF] text-[#FFFFFF] transition-colors'>Ver perfil completo</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+                      <CardFooter className='flex gap-2 mt-auto'>
+                        <Link href={`/profiles/${profile.id}`} className='w-full'>
+                          <Button className='w-full bg-[#FFDF00] hover:bg-[#FFE933] text-[#1E1E1E] transition-colors font-bold'>Ver perfil completo</Button>
+                        </Link>
+                      </CardFooter>
+                    </Card>
+                  ))}
+              </div>
+            </div>
+
+            {/* Sección de Profesionales Regulares */}
+            <div className='mt-12'>
+              <h2 className='text-2xl font-bold text-center text-[#00B8D9] mb-6'>Todos los Profesionales</h2>
+              <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                {profiles
+                  .filter((profile) => profile.id !== 9 && profile.id !== 10)
+                  .map((profile) => (
+                    <Card key={profile.id} className='bg-[#1E1E1E] border-[#3A3A3A] hover:border-[#00B8D9] transition-colors h-[400px] flex flex-col'>
+                      <CardContent className='pt-6 flex-grow overflow-hidden'>
+                        <div className='flex justify-between items-start mb-4'>
+                          <div>
+                            <h2 className='text-xl font-bold text-[#00B8D9]'>{profile.name}</h2>
+                            <div className='flex items-center gap-1 mt-1'>
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className={`w-4 h-4 ${i < profile.rating ? 'fill-[#33CCFF] text-[#33CCFF]' : 'text-[#3A3A3A]'}`} />
+                              ))}
+                              <span className='text-sm text-[#E0E0E0]'>({profile.reviews} reseñas)</span>
+                            </div>
+                          </div>
+                          <span className='text-2xl font-bold text-[#00B8D9]'>{profile.price}</span>
+                        </div>
+
+                        <div className='mb-4'>
+                          <div className='flex items-center gap-2 mb-2'>
+                            <span className='text-[#FFFFFF]'>
+                              {isNaN(parseFloat(profile.reliability)) ? profile.reliability : `${(parseFloat(profile.reliability) * 100).toFixed(0)}%`}
+                            </span>
+                            <span className='text-[#E0E0E0]'>Fiabilidad</span>
+                          </div>
+                          <div className='flex items-center gap-2'>
+                            <span className='text-[#FFFFFF]'>{profile.completed_orders || profile.completedOrders}</span>
+                            <span className='text-[#E0E0E0]'>Encargos Completados</span>
+                          </div>
+                        </div>
+
+                        <div className='text-[#E0E0E0] overflow-hidden max-h-[150px]'>{profile.description}</div>
+                      </CardContent>
+
+                      <CardFooter className='flex gap-2 mt-auto'>
+                        <Link href={`/profiles/${profile.id}`} className='w-full'>
+                          <Button className='w-full bg-[#00B8D9] hover:bg-[#33CCFF] text-[#FFFFFF] transition-colors'>Ver perfil completo</Button>
+                        </Link>
+                      </CardFooter>
+                    </Card>
+                  ))}
+              </div>
+            </div>
+          </>
         )}
       </main>
     </div>

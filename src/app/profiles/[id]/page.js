@@ -2,8 +2,8 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Star, X } from 'lucide-react'
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { ArrowLeft, Star, X, Volume2, VolumeX } from 'lucide-react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { useSession, signIn } from 'next-auth/react'
 import { ReviewCard } from '@/components/profile/ReviewCard'
 import { ImagePreview } from '@/components/profile/ImagePreview'
@@ -29,6 +29,8 @@ export default function ProfilePage() {
   const [reviews, setReviews] = useState([])
   const [reviewsLoading, setReviewsLoading] = useState(false)
   const [reviewsError, setReviewsError] = useState(null)
+  const [isMuted, setIsMuted] = useState(false)
+  const audioRef = useRef(null)
 
   const profileApiUrl = useMemo(() => `/api/profiles/${id}`, [id])
   const reviewsApiUrl = useMemo(() => `/api/reviews?profileId=${id}`, [id])
@@ -187,7 +189,6 @@ export default function ProfilePage() {
   const handleImageClick = useCallback((image) => {
     setSelectedImage(image)
   }, [])
-
   const handleGoBack = useCallback(() => {
     router.back()
   }, [router])
@@ -205,6 +206,21 @@ export default function ProfilePage() {
       }
     })
   }, [profile?.rating])
+  // Función para manejar el silencio del audio
+  const toggleMute = useCallback(() => {
+    if (audioRef.current) {
+      const newMutedState = !isMuted
+      audioRef.current.muted = newMutedState
+      setIsMuted(newMutedState)
+      if (!newMutedState) {
+        // Si se desmutea, intenta reproducir el audio
+        const playPromise = audioRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {}) // Silencia el error si el navegador bloquea el autoplay
+        }
+      }
+    }
+  }, [isMuted])
 
   if (loading) {
     return (
@@ -225,7 +241,7 @@ export default function ProfilePage() {
         <Navbar />
         <div className='container mx-auto px-4 py-8 text-white'>
           <h1 className='text-2xl font-bold mb-4 text-[#33CCFF]'>Perfil no encontrado</h1>
-          <p className='mb-4 text-white/70'>{error || 'No se pudo cargar este perfil'}</p>
+          <p className='mb-4 text-white/70'>{error || 'No se pudo cargar este perfil'}</p>{' '}
           <Button variant='ghost' onClick={handleGoBack} className='text-[#33CCFF] hover:text-white hover:bg-[#33CCFF]/20'>
             <ArrowLeft className='mr-2 h-4 w-4' /> Volver
           </Button>
@@ -236,6 +252,8 @@ export default function ProfilePage() {
 
   return (
     <>
+      {/* Audio especial para el perfil 9 */}
+      {id === '9' && <audio ref={audioRef} src='/chicken_remix.mp3' autoPlay loop style={{ display: 'none' }} />}
       <Navbar />
       <div className='container mx-auto px-4 py-8 text-white'>
         <Button variant='ghost' onClick={handleGoBack} className='mb-6 text-[#33CCFF] hover:text-white hover:bg-[#33CCFF]/20'>
@@ -245,7 +263,7 @@ export default function ProfilePage() {
           <ProfileGallery profile={profile} onImageClick={handleImageClick} />
 
           <div>
-            <ProfileHeader profile={profile} onContactClick={() => setIsVideoModalOpen(true)} />
+            <ProfileHeader profile={profile} onContactClick={() => setIsVideoModalOpen(true)} showMusicControl={id === '9'} isMuted={isMuted} onToggleMute={toggleMute} />
 
             <div className='flex justify-between items-center mb-4 mt-6'>
               <h3 className='text-xl font-semibold text-[#33CCFF]'>Reseñas recientes</h3>

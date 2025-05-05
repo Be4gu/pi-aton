@@ -10,21 +10,21 @@ export default function ConstruccionPage() {
   const bases = [
     {
       id: '1',
-      nombre: 'Compact 2x2 Bunker',
-      categoria: 'compacta',
+      nombre: 'Apu Shop V2.0',
+      categoria: 'otros',
       descripcion:
-        'Una base compacta pero extremadamente segura que ofrece una defensa excepcional contra raids. Utiliza un sistema de búnker con estabilidad manipulada que hace que sea extremadamente costosa de raidear.',
-      creador: 'Evil Wurst',
-      costoMateriales: 'Medio (5.5k piedra, 2.5k metal)',
+        '¿Buscas una tienda imparable en tu wipe? En este video te enseño paso a paso cómo construir la APU SHOP, una tienda con 15 vending machines perfecta para controlar el mercado desde el primer día.Este diseño es creación del crack aLUDOVICI, un referente de Rust en habla hispana. ¡Créditos completos a su talento!',
+      creador: 'aLUDOVICI',
+      // costoMateriales: 'Medio (5.5k piedra, 2.5k metal)',
       tiempoConstruccion: '15-20 minutos',
-      imagen: '/placeholder.jpg',
-      videoUrl: 'https://www.youtube.com/watch?v=7MTJvBL18yk',
+      imagen: '/apushop.png',
+      videoUrl: 'https://youtu.be/EO0mbRtPo94?si=pTYaPbwXeQYmyKqU',
       ventajas: ['Extremadamente resistente a raids para su tamaño', 'Fácil y rápida de construir', 'Muy eficiente en términos de coste-beneficio'],
       desventajas: ['Espacio interno limitado', 'Menos opciones para expandirse'],
       consejos: [
-        'Coloca la base en una zona no muy transitada para evitar ser objetivo',
-        'Construye primero la parte del búnker para asegurar tus recursos iniciales',
-        'Usa puertas de garaje para el mecanismo del búnker para mayor seguridad'
+        'Construye por pisos si no dispones de muchos recursos',
+        'Las torretas en modo amigables (igual que en la zonas seguras)',
+        'Una vez terminada se puede automatizar al completo para que funcione sola'
       ]
     },
     {
@@ -168,32 +168,32 @@ export default function ConstruccionPage() {
                       <p className='text-white'>
                         <span className='font-semibold text-[#33CCFF]'>Creador:</span> {base.creador}
                       </p>
-                      <p className='text-white'>
+                      {/* <p className='text-white'>
                         <span className='font-semibold text-[#33CCFF]'>Coste de materiales:</span> {base.costoMateriales}
-                      </p>
+                      </p> */}
                       <p className='text-white'>
                         <span className='font-semibold text-[#33CCFF]'>Tiempo aproximado:</span> {base.tiempoConstruccion}
                       </p>
                     </div>
 
-                    <div>
+                    {/* <div>
                       <h3 className='font-semibold text-white mb-2'>Ventajas:</h3>
                       <ul className='list-disc pl-5 text-gray-300 space-y-1'>
                         {base.ventajas.map((ventaja, index) => (
                           <li key={index}>{ventaja}</li>
                         ))}
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
 
-                  <div className='mt-4'>
+                  {/* <div className='mt-4'>
                     <h3 className='font-semibold text-white mb-2'>Desventajas:</h3>
                     <ul className='list-disc pl-5 text-gray-300 space-y-1'>
                       {base.desventajas.map((desventaja, index) => (
                         <li key={index}>{desventaja}</li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className='w-full md:w-1/3'>

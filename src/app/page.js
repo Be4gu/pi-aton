@@ -35,7 +35,22 @@ export default function Home() {
           </Link>
         </section>
 
-        <div className='section-divider' />
+        <section className='flex justify-center mb-24'>
+          <div className='bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 p-1 rounded-2xl shadow-xl max-w-3xl w-full'>
+            <div className='bg-[#181818] rounded-2xl p-8 flex flex-col items-center text-center'>
+              <h2 className='text-2xl md:text-3xl font-extrabold text-yellow-400 mb-4 drop-shadow'>¡Descubre la nueva WIKI de Piñaton!</h2>
+              <p className='text-white mb-6'>
+                Consulta guías, trucos, estrategias y toda la sabiduría de la comunidad Piñaton en un solo lugar. ¡Aprende, comparte y conviértete en un auténtico pro!
+              </p>
+              <Link
+                href='/wiki'
+                className='mt-2 px-6 py-2 rounded-md font-bold text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 shadow-lg border-2 border-yellow-400 hover:from-yellow-500 hover:to-yellow-700 transition-all animate-pulse text-center text-lg'
+              >
+                WIKI
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <section className='grid md:grid-cols-2 gap-10 mb-24'>
           <div className='bg-dark-gray p-10 rounded-xl border border-light-gray card-hover'>

@@ -26,6 +26,9 @@ export default function Navbar() {
               <Link href='/' className='mr-6 flex items-center space-x-2'>
                 <span className='text-2xl font-bold text-primary-blue'>PIÑATON</span>
               </Link>
+              <Link href='/wiki' className='text-lg font-extrabold text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-full px-5 py-2 shadow-lg border-2 border-yellow-400 hover:from-yellow-500 hover:to-yellow-700 transition-all animate-pulse text-center'>
+                WIKI
+              </Link>
               <Link href='/' className='text-lg font-semibold text-primary-blue hover:text-[#33CCFF] transition-colors'>
                 Home
               </Link>
@@ -85,6 +88,9 @@ export default function Navbar() {
           </Link>
           <Link href='/tienda' className='text-primary-blue hover:text-[#33CCFF] transition-colors font-medium'>
             Tienda
+          </Link>
+          <Link href='/wiki' className=' px-4 py-2 rounded-md font-bold text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 shadow-lg border-2 border-yellow-400 hover:from-yellow-500 hover:to-yellow-700 transition-all animate-pulse'>
+            WIKI
           </Link>
         </nav>
 

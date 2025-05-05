@@ -24,35 +24,35 @@ export default function ComandosPage() {
         description: 'Asigna un comando a una tecla específica',
         example: 'bind z "~graphics.vm_fov_scale false;graphics.vm_fov_scale true"',
         tip: 'Para eliminar un bindeo usa: bind [tecla] ""',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       },
       {
         command: '~ (símbolo)',
         description: 'Combinar comandos para alternar entre estados al pulsar la misma tecla',
         example: '~mesh.quality 200;mesh.quality 0',
         tip: 'Útil para crear toggles que cambian de un estado a otro',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       },
       {
         command: '+ (símbolo)',
         description: 'El comando solo se activa mientras la tecla se mantiene pulsada',
         example: '+duck',
         tip: 'Se desactivará automáticamente al soltar la tecla',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       },
       {
         command: '; (símbolo)',
         description: 'Separador para combinar varios comandos en un mismo bindeo',
         example: 'bind [tecla] "+map;+focusmap"',
         tip: 'Permite ejecutar múltiples acciones con una sola tecla',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       },
       {
         command: '[ ] (símbolos)',
         description: 'Para crear combinaciones de teclas',
         example: 'bind [leftcontrol+mouse1] "+input.sensitivity 0.6;input.sensitivity 0.44;"',
         tip: 'Lista completa de teclas disponible en wiki.facepunch.com',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       }
     ],
     audio: [
@@ -61,7 +61,7 @@ export default function ComandosPage() {
         description: 'Ajusta/silencia el volumen general',
         example: 'bind [tecla] ~audio.master 0;audio.master 1',
         tip: 'Útil para mutear/desmutear todo el sonido con una tecla',
-        videoUrl: 'https://www.youtube.com/@rustmodocalvo'
+        videoUrl: 'https://www.youtube.com'
       },
       { command: 'audio.effects', description: 'Ajusta el volumen de los efectos de sonido (0-100)', example: 'audio.effects 70' },
       { command: 'audio.music', description: 'Ajusta el volumen de la música de fondo (0-100)', example: 'audio.music 50' },

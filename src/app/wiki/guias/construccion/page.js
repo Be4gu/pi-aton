@@ -118,10 +118,7 @@ export default function ConstruccionPage() {
     <>
       <h1 className='text-4xl font-bold mb-6 text-white'>Guías de Construcción</h1>
 
-      <p className='text-lg text-gray-300 mb-8'>
-        Domina el arte de construir las bases más seguras y eficientes en Rust con nuestras guías detalladas. Encuentra la base perfecta para tu estilo de juego, desde pequeñas
-        estructuras para solistas hasta complejas fortificaciones para clanes.
-      </p>
+      <p className='text-lg text-gray-300 mb-8'>Actualmente estamos recopilando las mejores bases de la comunidad. Esta es una plantilla de como quedará el contenido final.</p>
 
       <div className='mb-6'>
         <div className='flex flex-wrap gap-2 mb-8'>

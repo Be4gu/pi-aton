@@ -16,60 +16,43 @@ export default function WikiPage() {
         {/* Secciones principales de la documentación */}
 
         <div className='bg-[#1a1a1a] border border-[#333] p-6 rounded-lg hover:border-[#33CCFF] transition-colors'>
-          <h2 className='text-xl font-semibold mb-2 text-[#33CCFF]'>Guías</h2>
-          <p className='text-gray-400 mb-4'>Guías paso a paso para contratar profesionales, realizar pagos y dejar valoraciones.</p>
-          <Link href='/wiki/guias/como-contratar' className='flex items-center text-[#33CCFF] hover:text-white'>
-            Ver guías <ArrowRight className='ml-2 h-4 w-4' />
+          <h2 className='text-xl font-semibold mb-2 text-[#33CCFF]'>Comandos</h2>
+          <p className='text-gray-400 mb-4'>Comandos útiles para mejorar tu experiencia en el juego.</p>
+          <Link href='/wiki/guias/comandos' className='flex items-center text-[#33CCFF] hover:text-white'>
+            Ver comandos <ArrowRight className='ml-2 h-4 w-4' />
+          </Link>
+        </div>
+        <div className='bg-[#1a1a1a] border border-[#333] p-6 rounded-lg hover:border-[#33CCFF] transition-colors'>
+          <h2 className='text-xl font-semibold mb-2 text-[#33CCFF]'>Construcciones</h2>
+          <p className='text-gray-400 mb-4'>Las mejores bases y construcciones para tu experiencia en el juego.</p>
+          <Link href='/wiki/guias/construccion' className='flex items-center text-[#33CCFF] hover:text-white'>
+            Ver construcciones <ArrowRight className='ml-2 h-4 w-4' />
+          </Link>
+        </div>
+        <div className='bg-[#1a1a1a] border border-[#333] p-6 rounded-lg hover:border-[#33CCFF] transition-colors'>
+          <h2 className='text-xl font-semibold mb-2 text-[#33CCFF]'>Automatización y electricidad</h2>
+          <p className='text-gray-400 mb-4'>Las mejores automatizaciones tanto para zergs como para jugadores en solitario.</p>
+          <Link href='/wiki/guias/automatizacion-electricidad' className='flex items-center text-[#33CCFF] hover:text-white'>
+            Ver automatización y electricidad <ArrowRight className='ml-2 h-4 w-4' />
           </Link>
         </div>
       </div>
-
-      {/* Primeros pasos */}
-      <h2 className='text-2xl font-bold mb-4 text-white border-b border-[#333] pb-2'>Primeros pasos</h2>
-      <ol className='space-y-4 mb-10'>
-        <li className='flex'>
-          <span className='bg-[#33CCFF] text-black font-bold h-6 w-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0'>1</span>
-          <div>
-            <h3 className='text-lg font-medium text-white'>Explora nuestra tienda</h3>
-            <p className='text-gray-400'>Navega por nuestra selección de profesionales y encuentra el que mejor se adapte a tus necesidades.</p>
-          </div>
-        </li>
-        <li className='flex'>
-          <span className='bg-[#33CCFF] text-black font-bold h-6 w-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0'>2</span>
-          <div>
-            <h3 className='text-lg font-medium text-white'>Contacta con un profesional</h3>
-            <p className='text-gray-400'>Una vez encuentres a un profesional que te interese, contáctalo para discutir tus necesidades específicas.</p>
-          </div>
-        </li>
-        <li className='flex'>
-          <span className='bg-[#33CCFF] text-black font-bold h-6 w-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0'>3</span>
-          <div>
-            <h3 className='text-lg font-medium text-white'>Disfruta del servicio</h3>
-            <p className='text-gray-400'>Coordina los detalles con el profesional y disfruta de un servicio de calidad.</p>
-          </div>
-        </li>
-      </ol>
 
       {/* Recursos populares */}
       <h2 className='text-2xl font-bold mb-4 text-white border-b border-[#333] pb-2'>Recursos populares</h2>
       <ul className='space-y-2 mb-8'>
         <li>
-          <Link href='/wiki/recursos/faq' className='text-[#33CCFF] hover:underline'>
+          <Link href='/wiki/preguntas-frecuentes' className='text-[#33CCFF] hover:underline'>
             Preguntas frecuentes
           </Link>
         </li>
         <li>
-          <Link href='/wiki/guias/sistema-pagos' className='text-[#33CCFF] hover:underline'>
-            Sistema de pagos
-          </Link>
-        </li>
-        <li>
-          <Link href='/wiki/recursos/terminos' className='text-[#33CCFF] hover:underline'>
+          <Link href='/wiki/terminos-de-servicio' className='text-[#33CCFF] hover:underline'>
             Términos de servicio
           </Link>
         </li>
         <li>
-          <Link href='/wiki/recursos/contacto' className='text-[#33CCFF] hover:underline'>
+          <Link href='/wiki/contacto' className='text-[#33CCFF] hover:underline'>
             Contacto y soporte
           </Link>
         </li>

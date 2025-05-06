@@ -62,20 +62,21 @@ export const metadata = {
   }
 }
 
+import { headers } from 'next/headers'
+
 export default function RootLayout({ children }) {
-  // Canonical base (siempre https y dominio con ñ)
-  const canonicalBase = 'https://piñaton.com'
-  // Detecta la ruta actual en el navegador (solo en cliente)
-  let canonicalUrl = canonicalBase
-  if (typeof window !== 'undefined') {
-    canonicalUrl = canonicalBase + window.location.pathname + window.location.search
-  }
+  // Calcula la canonical real desde el header x-url (middleware debe establecerlo)
+  let canonicalUrl = 'https://piñaton.com'
+  try {
+    const h = headers()
+    const url = h.get('x-url')
+    if (url) canonicalUrl = url
+  } catch {}
 
   return (
     <html lang='es'>
       <head>
         <script defer src='https://cloud.umami.is/script.js' data-website-id='75c46d0f-f565-48a7-b2c2-9b7a526fb9b8'></script>
-        {/* Consolidar autoridad y evitar duplicados (ñ vs Punycode, http vs https) */}
         <link rel='canonical' href={canonicalUrl} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>

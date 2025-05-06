@@ -13,10 +13,52 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata = {
-  title: 'Piñaton.com',
-  description: 'Created by Entrellaves',
+  title: 'Wiki Piñaton | Guías, comandos y trucos para Rust y supervivencia',
+  description:
+    'La Wiki de Piñaton es el mayor centro de guías, comandos, automatizaciones, construcciones y tips para Rust y juegos de supervivencia. Aprende, domina y comparte con la comunidad. Actualizada a diario.',
+  keywords: [
+    'wiki rust',
+    'comandos rust',
+    'guías rust',
+    'automatización rust',
+    'bases rust',
+    'piñaton',
+    'piñaton wiki',
+    'trucos rust',
+    'profesionales rust',
+    'servicios rust',
+    'supervivencia',
+    'comunidad rust',
+    'piñaton comunidad',
+    'piñaton guías',
+    'piñaton tips'
+  ],
+  openGraph: {
+    title: 'Wiki Piñaton | Guías, comandos y trucos para Rust y supervivencia',
+    description:
+      'La Wiki de Piñaton es el mayor centro de guías, comandos, automatizaciones, construcciones y tips para Rust. Aprende, domina y comparte con la comunidad. Actualizada a diario.',
+    url: 'https://piñaton.com/wiki',
+    siteName: 'Wiki Piñaton',
+    images: [
+      {
+        url: 'https://piñaton.com/proximamente.png',
+        width: 1200,
+        height: 630,
+        alt: 'Wiki Piñaton - Guías y trucos para Rust'
+      }
+    ],
+    locale: 'es_ES',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wiki Piñaton | Guías, comandos y trucos para Rust y supervivencia',
+    description:
+      'La Wiki de Piñaton es el mayor centro de guías, comandos, automatizaciones, construcciones y tips para Rust y juegos de supervivencia. Aprende, domina y comparte con la comunidad. Actualizada a diario.',
+    images: ['https://piñaton.com/proximamente.png']
+  },
   icons: {
-    icon: '/img-title.ico' // Corregido: cambiado de img-title.ico a img-title.png
+    icon: '/img-title.ico'
   }
 }
 

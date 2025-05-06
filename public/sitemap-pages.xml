@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://piñaton.com/</loc>
+    <lastmod>2025-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://piñaton.com/wiki</loc>
+    <lastmod>2025-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://piñaton.com/tienda</loc>
+    <lastmod>2025-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Perfiles -->
+  <url><loc>https://piñaton.com/profiles/1</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/2</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/3</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/4</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/5</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/6</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/7</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/8</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/9</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://piñaton.com/profiles/10</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Wiki guías y otras -->
+  <url><loc>https://piñaton.com/wiki/guias/comandos</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://piñaton.com/wiki/guias/construccion</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://piñaton.com/wiki/guias/automatizacion-electricidad</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://piñaton.com/wiki/guias/curiosidades</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://piñaton.com/wiki/guias/como-contratar</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://piñaton.com/wiki/servicios/raids</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://piñaton.com/wiki/preguntas-frecuentes</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://piñaton.com/wiki/primeros-pasos</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://piñaton.com/wiki/que-es-pinaton</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://piñaton.com/wiki/contacto</loc><lastmod>2025-05-05</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://piñaton.com/wiki/terminos-de-servicio</loc><lastmod>2025-05-05</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://piñaton.com/wiki/proximamente</loc><lastmod>2025-05-05</lastmod><changefreq>monthly</changefreq><priority>0.2</priority></url>
+</urlset>

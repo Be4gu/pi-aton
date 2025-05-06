@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://piñaton.com/wiki/guias/construccion</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/EO0mbRtPo94/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[Cómo Construir la MEJOR Tienda de 15 Vending en Rust | APU SHOP]]></video:title>
+      <video:description><![CDATA[Tutorial paso a paso para construir la tienda APU SHOP con 15 máquinas vending en Rust.]]></video:description>
+      <video:player_loc allow_embed="yes"><![CDATA[https://www.youtube.com/embed/EO0mbRtPo94]]></video:player_loc>
+      <video:duration>620</video:duration>
+      <video:publication_date>2025-05-05T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+</urlset>

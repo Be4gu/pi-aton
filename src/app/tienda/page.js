@@ -135,14 +135,14 @@ export default function Store() {
                     </Card>
                   ))}
               </div>
-            </div>
-
+            </div>{' '}
             {/* Sección de Profesionales Regulares */}
             <div className='mt-12'>
               <h2 className='text-2xl font-bold text-center text-[#00B8D9] mb-6'>Todos los Profesionales</h2>
               <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                {profiles
+                {[...profiles]
                   .filter((profile) => profile.id !== 9 && profile.id !== 10)
+                  .sort(() => Math.random() - 0.5) // Randomiza el orden de los perfiles no premium
                   .map((profile) => (
                     <Card key={profile.id} className='bg-[#1E1E1E] border-[#3A3A3A] hover:border-[#00B8D9] transition-colors h-[400px] flex flex-col'>
                       <CardContent className='pt-6 flex-grow overflow-hidden'>
